@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,13 +29,30 @@ class PostController extends Controller
         if (! $added) {
             return redirect()->back()->with(
                 'error',
-                'Error adding new event video post!'
+                'Error adding post!'
             );
         }
 
         return redirect()->back()->with(
             'success',
-            'New event video post added successfully!'
+            'New post added successfully!'
         );
+    }
+
+    private function prepareInputData(
+        Post $post,
+        Request $request
+    ): Post {
+
+        $request->validate([
+            'title' => 'required|string',
+        ]);
+
+        $post->title = filter_var(
+            $request->input('title'),
+            FILTER_SANITIZE_STRING
+        );
+
+        return $post;
     }
 }
