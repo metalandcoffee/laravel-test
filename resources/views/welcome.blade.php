@@ -63,7 +63,10 @@
                     @if( $posts )
                     <ul class="list-disc">
                         @foreach($posts as $index => $post)
-                            <li class="whitespace-nowrap px-6 py-4">{{ $post->title }}</li>
+                            <li class="whitespace-nowrap px-6 py-4">
+                            <h3>{{ $post->title }}</h3>
+                            <div>{!! $post->content !!}</div>
+                            </li>
                         @endforeach
                     </ul>
                     @else
