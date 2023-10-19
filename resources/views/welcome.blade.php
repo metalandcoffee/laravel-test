@@ -43,6 +43,7 @@
                                 type="text"
                                 value="{!! $post->title ?? old('title') !!}"
                             >
+                            <x-trix-field id="content" name="content" />
                         </div>
                         <div class="flex gap-6 mb-4 mt-6 justify-end">
                             <button
