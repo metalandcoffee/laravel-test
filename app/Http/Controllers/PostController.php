@@ -46,12 +46,14 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required|string',
+            'content' => 'required',
         ]);
 
         $post->title = filter_var(
             $request->input('title'),
             FILTER_SANITIZE_STRING
         );
+        $post->content = $request->input('content');
 
         return $post;
     }
