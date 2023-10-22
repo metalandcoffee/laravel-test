@@ -1,3 +1,5 @@
+@props(['post' => null])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -49,11 +51,10 @@
                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 id="title"
                                 name="title"
-                                required
                                 type="text"
                                 value="{!! $post->title ?? old('title') !!}"
                             >
-                            <x-trix-field id="content" name="content" />
+                            <x-trix-field id="content" name="content" value="{!! $post?->content->toTrixHtml() ?? old('content') !!}" />
                         </div>
                         <div class="flex gap-6 mb-4 mt-6 justify-end">
                             <button
